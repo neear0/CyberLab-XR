@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CyberLab XR — Incident Response Simulator</title>
+<link rel="apple-touch-icon" sizes="180x180" href="imgs/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="imgs/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+<link rel="manifest" href="imgs/site.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -72,7 +77,7 @@
     padding: 88px 0 64px;
     position: relative;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     gap: 48px;
     align-items: center;
     border-bottom: 1px solid var(--border);
@@ -157,6 +162,7 @@
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    margin: 40px;
   }
 
   .badge-circle {
@@ -690,7 +696,7 @@
     100% { top: 100vh; opacity: 0; }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 620px) {
     .hero { grid-template-columns: 1fr; }
     .hero-badge { display: none; }
     .stat-bar { grid-template-columns: repeat(2, 1fr); }
@@ -698,6 +704,49 @@
     .why-points { grid-template-columns: 1fr; }
     .page { padding: 0 20px 80px; }
   }
+  .hero-logo {
+  width: 280px; 
+  max-width: 100%;
+  margin-bottom: 20px;
+  margin: 80px;
+
+
+  border-radius: 18px; 
+  overflow: hidden;
+
+  filter: drop-shadow(0 0 18px rgba(0,212,240,0.28));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 28px rgba(0,212,240,0.45));
+}
+.cta {
+  display: block;
+  width: fit-content;
+  margin: 40px auto 50px; 
+
+  padding: 12px 22px;
+  border-radius: 15px;
+
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+
+  text-decoration: none;
+  letter-spacing: 0.5px;
+
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0,212,240,0.45);
+}
 </style>
 </head>
 <body>
@@ -707,23 +756,29 @@
 <div class="page">
 
   <header class="hero">
-    <div class="hero-bg-circle"></div>
-    <div>
-      <div class="tag">Koncepčný návrh · 2025</div>
-      <h1>CyberLab<span>XR</span></h1>
-      <p class="hero-sub">
-        Virtuálny Security Operations Center pre výuku kybernetickej bezpečnosti.
-        Realistické simulácie incidentov v priestorovom XR prostredí, presne ako v skutočnej praxi.
-      </p>
-    </div>
+  <div class="hero-bg-circle"></div>
+
+  <img src="imgs/logo.png" alt="CyberLab XR Logo" class="hero-logo">
+
+  <div>
+    <div class="tag">Koncepčný návrh · 2025</div>
+    <h1>CyberLab<span>XR</span></h1>
+    <p class="hero-sub">
+      Virtuálny Security Operations Center pre výuku kybernetickej bezpečnosti.
+      Realistické simulácie incidentov v priestorovom XR prostredí, presne ako v skutočnej praxi.
+    </p>
+  </div>
     <div class="hero-badge">
       <div class="badge-circle">
-        <span class="badge-num">v1.0</span>
+        <span class="badge-num">v1.1</span>
         <span class="badge-label">Prototype</span>
       </div>
       <span class="badge-text">Incident<br>Simulator</span>
     </div>
   </header>
+  <a href="simulator.php" class="cta">
+  Spustiť simulátor →
+</a>
 
   <div class="stat-bar">
     <div class="stat-item">
