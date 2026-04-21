@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberLab XR — Incident Response Simulator</title>
+<title>CyberLab XR | Incident Response Simulator</title>
 <link rel="apple-touch-icon" sizes="180x180" href="imgs/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="imgs/favicon-16x16.png">
@@ -12,20 +12,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:            #060c12;
-    --surface:       #0a1520;
-    --surface2:      #0f1e2e;
-    --surface3:      #162435;
-    --accent:        #00d4f0;
-    --accent2:       #00f5a0;
-    --accent3:       #ff4b6e;
-    --accent4:       #ffd166;
-    --text:          #eef4fa;
-    --text-dim:      #8fb3cc;
-    --text-muted:    #5a7d96;
-    --border:        rgba(0,212,240,0.15);
+    --bg: #060c12;
+    --surface: #0a1520;
+    --surface2: #0f1e2e;
+    --surface3: #162435;
+    --accent: #00d4f0;
+    --accent2: #00f5a0;
+    --accent3: #ff4b6e;
+    --accent4: #ffd166;
+    --accent5: #a855f7;
+    --text: #eef4fa;
+    --text-dim: #8fb3cc;
+    --text-muted: #5a7d96;
+    --border: rgba(0,212,240,0.15);
     --border-strong: rgba(0,212,240,0.28);
-    --glow:          0 0 32px rgba(0,212,240,0.18);
+    --glow: 0 0 32px rgba(0,212,240,0.18);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,8 +55,10 @@
   body::after {
     content: '';
     position: fixed;
-    top: -40%; left: -15%;
-    width: 55%; height: 75%;
+    top: -40%;
+    left: -15%;
+    width: 55%;
+    height: 75%;
     background: radial-gradient(ellipse, rgba(0,212,240,0.04) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
@@ -84,8 +87,10 @@
 
   .hero-bg-circle {
     position: absolute;
-    right: -80px; top: -60px;
-    width: 460px; height: 460px;
+    right: -80px;
+    top: -60px;
+    width: 460px;
+    height: 460px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(0,245,160,0.05) 0%, transparent 65%);
     pointer-events: none;
@@ -110,7 +115,8 @@
   .tag::before {
     content: '';
     display: inline-block;
-    width: 7px; height: 7px;
+    width: 7px;
+    height: 7px;
     background: var(--accent2);
     border-radius: 50%;
     animation: blink 1.6s ease-in-out infinite;
@@ -118,7 +124,7 @@
 
   @keyframes blink {
     0%, 100% { opacity: 1; }
-    50%       { opacity: 0.15; }
+    50% { opacity: 0.15; }
   }
 
   .hero h1 {
@@ -149,21 +155,6 @@
     letter-spacing: 0.2px;
   }
 
-  .hero-logo {
-    width: 280px;
-    max-width: 100%;
-    margin: 80px;
-    border-radius: 18px;
-    overflow: hidden;
-    filter: drop-shadow(0 0 18px rgba(0,212,240,0.28));
-    transition: transform 0.25s ease, filter 0.25s ease;
-  }
-
-  .hero-logo:hover {
-    transform: scale(1.02);
-    filter: drop-shadow(0 0 28px rgba(0,212,240,0.45));
-  }
-
   .hero-badge {
     display: flex;
     flex-direction: column;
@@ -174,7 +165,8 @@
   }
 
   .badge-circle {
-    width: 116px; height: 116px;
+    width: 116px;
+    height: 116px;
     border-radius: 50%;
     border: 2px solid var(--accent);
     display: flex;
@@ -198,7 +190,13 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .badge-circle .badge-num  { font-size: 31px; font-weight: bold; color: var(--accent); line-height: 1; }
+  .badge-circle .badge-num {
+    font-size: 31px;
+    font-weight: bold;
+    color: var(--accent);
+    line-height: 1;
+  }
+
   .badge-circle .badge-label {
     font-size: 9px;
     color: var(--text-dim);
@@ -214,27 +212,6 @@
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
-  }
-
-  .cta {
-    display: block;
-    width: fit-content;
-    margin: 40px auto 50px;
-    padding: 12px 22px;
-    border-radius: 15px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #000;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-  }
-
-  .cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(0,212,240,0.45);
   }
 
   /* ── STAT BAR ── */
@@ -282,7 +259,12 @@
   .stat-item:nth-child(2) .stat-num { color: var(--accent2); }
   .stat-item:nth-child(3) .stat-num { color: var(--accent4); }
 
-  .stat-desc { font-size: 14px; color: var(--text-dim); font-weight: 400; letter-spacing: 0.3px; }
+  .stat-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
 
   /* ── SECTION HEADERS ── */
   .section { margin-bottom: 68px; }
@@ -384,69 +366,146 @@
     margin-bottom: 10px;
   }
 
-  .why-point p { font-size: 13.5px; color: var(--text-dim); line-height: 1.7; max-width: 100%; font-weight: 300; }
-
-  /* ── TARGET GROUP ── */
-  .target-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin-bottom: 24px;
+  .why-point p {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 100%;
+    font-weight: 300;
   }
 
-  .target-card {
+  /* ── GOALS + REASONING (two-column) ── */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .pane {
     background: var(--surface2);
     border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
     border-radius: 12px;
-    padding: 26px 28px;
-    position: relative;
-    transition: border-color 0.2s, background 0.2s;
+    padding: 30px 32px;
   }
 
-  .target-card:hover { background: var(--surface3); border-color: var(--border-strong); }
+  .pane.alt { border-left-color: var(--accent2); }
 
-  .target-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    border-radius: 12px 0 0 12px;
-  }
-
-  .target-card:nth-child(1)::before { background: var(--accent); }
-  .target-card:nth-child(2)::before { background: var(--accent2); }
-  .target-card:nth-child(3)::before { background: var(--accent4); }
-  .target-card:nth-child(4)::before { background: #a855f7; }
-
-  .target-icon {
-    font-size: 26px;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .target-title {
+  .pane-title {
     font-family: 'Rajdhani', sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    letter-spacing: 0.4px;
-    margin-bottom: 8px;
-  }
-
-  .target-body { font-size: 13.5px; color: var(--text-dim); line-height: 1.7; font-weight: 300; }
-
-  .personas-note {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: var(--text-muted);
-    background: rgba(0,212,240,0.06);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 16px 20px;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .personas-note strong { color: var(--accent); font-weight: 500; }
+  .pane-title::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .pane.alt .pane-title::before { background: var(--accent2); }
+
+  .pane ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pane ul li {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding: 7px 0 7px 22px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .pane ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 9px;
+  }
+
+  .pane.alt ul li::before { color: var(--accent2); }
+
+  .pane .lbl {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── AUDIENCE GRID ── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .aud-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aud-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: var(--glow);
+  }
+
+  .aud-card .aud-icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .aud-card .aud-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 0.4px;
+  }
+
+  .aud-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .aud-card:nth-child(1) { border-top: 2px solid var(--accent); }
+  .aud-card:nth-child(2) { border-top: 2px solid var(--accent2); }
+  .aud-card:nth-child(3) { border-top: 2px solid var(--accent4); }
+  .aud-card:nth-child(4) { border-top: 2px solid var(--accent5); }
+
+  .personas {
+    margin-top: 18px;
+    padding: 14px 22px;
+    background: rgba(0,212,240,0.04);
+    border: 1px dashed var(--border-strong);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    text-align: center;
+  }
+
+  .personas strong { color: var(--accent); font-style: normal; font-weight: 600; }
 
   /* ── TABLE ── */
   .table-wrap {
@@ -454,10 +513,10 @@
     overflow: hidden;
     border: 1px solid var(--border-strong);
     box-shadow: var(--glow);
-    margin-bottom: 18px;
   }
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
   thead tr { background: rgba(0,212,240,0.09); }
 
   thead th {
@@ -510,16 +569,18 @@
   }
 
   .table-note {
-    font-size: 13px;
-    color: var(--text-muted);
+    margin-top: 16px;
+    padding: 16px 22px;
     background: rgba(255,209,102,0.06);
-    border: 1px solid rgba(255,209,102,0.18);
-    border-radius: 9px;
-    padding: 14px 18px;
+    border: 1px solid rgba(255,209,102,0.22);
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: var(--text-dim);
     line-height: 1.7;
+    font-weight: 300;
   }
 
-  .table-note strong { color: var(--accent4); font-weight: 500; }
+  .table-note strong { color: var(--accent4); font-weight: 600; }
 
   /* ── INCIDENTS ── */
   .incidents-row {
@@ -547,21 +608,36 @@
     color: var(--text);
   }
 
-  .incident-pill:hover { border-color: var(--accent); box-shadow: 0 0 14px rgba(0,212,240,0.18); color: #fff; }
-  .incident-pill .pill-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .incident-pill:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 14px rgba(0,212,240,0.18);
+    color: #fff;
+  }
+
+  .incident-pill .pill-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
   .pill-ransomware { border-left: 3px solid var(--accent3); }
   .pill-ransomware .pill-dot { background: var(--accent3); }
   .pill-phishing   { border-left: 3px solid var(--accent4); }
-  .pill-phishing .pill-dot { background: var(--accent4); }
+  .pill-phishing .pill-dot   { background: var(--accent4); }
   .pill-ddos       { border-left: 3px solid var(--accent); }
-  .pill-ddos .pill-dot { background: var(--accent); }
+  .pill-ddos .pill-dot       { background: var(--accent); }
   .pill-insider    { border-left: 3px solid #a855f7; }
-  .pill-insider .pill-dot { background: #a855f7; }
+  .pill-insider .pill-dot    { background: #a855f7; }
   .pill-sql        { border-left: 3px solid var(--accent2); }
-  .pill-sql .pill-dot { background: var(--accent2); }
+  .pill-sql .pill-dot        { background: var(--accent2); }
 
-  .incidents-desc { font-size: 15px; color: var(--text-dim); line-height: 1.8; font-weight: 300; }
+  .incidents-desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
   .incidents-desc strong { color: var(--text); font-weight: 500; }
 
   /* ── FEATURES ── */
@@ -581,7 +657,11 @@
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   }
 
-  .feat-card:hover { transform: translateY(-3px); box-shadow: var(--glow); border-color: var(--border-strong); }
+  .feat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--glow);
+    border-color: var(--border-strong);
+  }
 
   .feat-card::before {
     content: '';
@@ -598,12 +678,39 @@
   .feat-card:nth-child(5)::before { background: linear-gradient(90deg, var(--accent2), #00bcd4); }
   .feat-card:nth-child(6)::before { background: linear-gradient(90deg, var(--accent), #a855f7); }
 
-  .feat-num { font-family: 'Share Tech Mono', monospace; font-size: 10.5px; color: var(--text-muted); margin-bottom: 14px; letter-spacing: 1px; }
-  .feat-title { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 0.5px; color: #fff; margin-bottom: 12px; }
-  .feat-body { font-size: 14.5px; color: var(--text-dim); line-height: 1.75; font-weight: 300; }
+  .feat-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+
+  .feat-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .feat-body {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
   .feat-body strong { color: var(--text); font-weight: 500; }
 
-  .feat-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+  .feat-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+  }
+
   .feat-tag {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10.5px;
@@ -615,8 +722,8 @@
     letter-spacing: 0.5px;
   }
 
-  /* ── HARDWARE ── */
-  .hardware-grid {
+  /* ── XR HARDWARE ── */
+  .hw-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
@@ -627,28 +734,26 @@
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 24px 26px;
+    padding: 24px 24px;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
 
-  .hw-card:hover { background: var(--surface3); border-color: var(--border-strong); }
+  .hw-card:hover { border-color: var(--border-strong); box-shadow: var(--glow); }
 
   .hw-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
+    background: var(--accent);
   }
 
-  .hw-card:nth-child(1)::before { background: var(--accent); }
-  .hw-card:nth-child(2)::before { background: var(--accent2); }
-  .hw-card:nth-child(3)::before { background: var(--accent4); }
+  .hw-card.primary::before { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+  .hw-card .hw-icon { font-size: 22px; margin-bottom: 12px; }
 
-  .hw-icon { font-size: 26px; margin-bottom: 12px; display: block; }
-
-  .hw-title {
+  .hw-card h4 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 17px;
     font-weight: 700;
@@ -656,155 +761,176 @@
     margin-bottom: 4px;
   }
 
-  .hw-sub {
+  .hw-card .hw-role {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
+    font-size: 10.5px;
     color: var(--accent);
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    display: block;
   }
 
-  .hw-list { list-style: none; padding: 0; }
+  .hw-card.primary .hw-role { color: var(--accent2); }
 
-  .hw-list li {
+  .hw-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .hw-card ul li {
     font-size: 13px;
     color: var(--text-dim);
-    line-height: 1.8;
-    font-weight: 300;
-    padding-left: 14px;
+    padding: 4px 0 4px 16px;
     position: relative;
+    font-weight: 300;
+    line-height: 1.6;
   }
 
-  .hw-list li::before {
-    content: '>';
+  .hw-card ul li::before {
+    content: '·';
     position: absolute;
-    left: 0;
+    left: 4px;
     color: var(--accent);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    top: -3px;
   }
 
-  .addon-row {
+  .hw-aux-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
 
-  .addon-card {
+  .hw-aux {
     background: rgba(0,212,240,0.04);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 24px;
+    border-radius: 10px;
+    padding: 20px 24px;
     display: flex;
-    gap: 18px;
+    gap: 16px;
     align-items: flex-start;
-    transition: border-color 0.2s;
   }
 
-  .addon-card:hover { border-color: var(--border-strong); }
+  .hw-aux .hw-aux-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+  }
 
-  .addon-icon { font-size: 30px; flex-shrink: 0; margin-top: 2px; }
-
-  .addon-title {
+  .hw-aux h5 {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
-    color: #fff;
+    color: var(--accent);
     margin-bottom: 6px;
+    letter-spacing: 0.4px;
   }
 
-  .addon-body { font-size: 13px; color: var(--text-dim); line-height: 1.7; font-weight: 300; }
+  .hw-aux p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 300;
+  }
 
   /* ── MOSCOW ── */
   .moscow-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
-  .moscow-card {
+  .moscow {
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s;
   }
 
-  .moscow-card:hover { transform: translateY(-2px); }
-
-  .moscow-header {
-    padding: 14px 22px;
+  .moscow-head {
+    padding: 14px 24px;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    color: #fff;
   }
 
-  .moscow-must .moscow-header   { background: rgba(239,68,68,0.25); color: #fca5a5; border-bottom: 1px solid rgba(239,68,68,0.3); }
-  .moscow-should .moscow-header { background: rgba(217,119,6,0.22); color: #fcd34d; border-bottom: 1px solid rgba(217,119,6,0.3); }
-  .moscow-could .moscow-header  { background: rgba(124,58,237,0.22); color: #c4b5fd; border-bottom: 1px solid rgba(124,58,237,0.3); }
-  .moscow-wont .moscow-header   { background: rgba(55,65,81,0.4);    color: var(--text-muted); border-bottom: 1px solid rgba(55,65,81,0.4); }
+  .moscow.must    .moscow-head { background: linear-gradient(90deg, var(--accent3), rgba(255,75,110,0.6)); }
+  .moscow.should  .moscow-head { background: linear-gradient(90deg, var(--accent4), rgba(255,154,60,0.7)); color: #1a1000; }
+  .moscow.could   .moscow-head { background: linear-gradient(90deg, var(--accent5), rgba(168,85,247,0.6)); }
+  .moscow.wont    .moscow-head { background: linear-gradient(90deg, #374151, #1f2937); }
 
-  .moscow-body { padding: 18px 22px; }
+  .moscow ul {
+    list-style: none;
+    padding: 18px 24px 22px;
+  }
 
-  .moscow-item {
-    font-size: 13px;
+  .moscow ul li {
+    font-size: 13.5px;
     color: var(--text-dim);
-    line-height: 1.8;
-    padding: 5px 0 5px 16px;
+    padding: 6px 0 6px 20px;
     position: relative;
+    line-height: 1.6;
     font-weight: 300;
   }
 
-  .moscow-must   .moscow-item::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: #ef4444; }
-  .moscow-should .moscow-item::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: #d97706; }
-  .moscow-could  .moscow-item::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: #7c3aed; }
-  .moscow-wont   .moscow-item::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+  .moscow ul li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+  }
+
+  .moscow.must ul li::before   { background: var(--accent3); }
+  .moscow.should ul li::before { background: var(--accent4); }
+  .moscow.could ul li::before  { background: var(--accent5); }
+  .moscow.wont ul li::before   { background: #4b5563; }
 
   /* ── TOOLS ── */
   .tools-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
-    margin-bottom: 18px;
   }
 
-  .tool-card {
+  .tool {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 26px;
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-    transition: border-color 0.2s, background 0.2s;
-    position: relative;
-    overflow: hidden;
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 22px 24px;
+    transition: border-color 0.2s, transform 0.2s;
   }
 
-  .tool-card:hover { background: var(--surface3); border-color: var(--border-strong); }
-
-  .tool-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
+  .tool:hover {
+    border-color: var(--border-strong);
+    border-left-color: var(--accent2);
+    transform: translateX(2px);
   }
 
-  .tool-card:nth-child(1)::before { background: var(--accent2); }
-  .tool-card:nth-child(2)::before { background: var(--accent4); }
-  .tool-card:nth-child(3)::before { background: var(--accent); }
-  .tool-card:nth-child(4)::before { background: #a855f7; }
+  .tool-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
 
-  .tool-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .tool h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
 
-  .tool-meta {}
-
-  .tool-title { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-
-  .tool-type {
+  .tool .tool-kind {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
     color: var(--accent);
@@ -814,67 +940,75 @@
     display: block;
   }
 
-  .tool-body { font-size: 13px; color: var(--text-dim); line-height: 1.7; font-weight: 300; }
-
-  .tool-note {
+  .tool p {
     font-size: 13px;
-    color: var(--text-muted);
-    background: rgba(255,209,102,0.06);
-    border: 1px solid rgba(255,209,102,0.18);
-    border-radius: 9px;
-    padding: 14px 18px;
-    line-height: 1.7;
-    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 300;
   }
 
-  .tool-note strong { color: var(--accent4); font-weight: 500; font-style: normal; }
+  .tools-note {
+    margin-top: 18px;
+    padding: 14px 22px;
+    background: rgba(0,245,160,0.04);
+    border: 1px dashed rgba(0,245,160,0.28);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .tools-note strong { color: var(--accent2); font-style: normal; font-weight: 600; }
 
   /* ── SOURCES ── */
   .sources-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
 
-  .source-card {
+  .source {
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 22px 26px;
-    transition: border-color 0.2s, background 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .source-card:hover { background: var(--surface3); border-color: var(--border-strong); }
-
-  .source-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
-  .source-card:nth-child(1)::before { background: var(--accent3); }
-  .source-card:nth-child(2)::before { background: var(--accent4); }
-  .source-card:nth-child(3)::before { background: var(--accent); }
-  .source-card:nth-child(4)::before { background: var(--accent2); }
-
-  .source-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-
-  .source-url {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-    display: block;
+    transition: border-color 0.2s, box-shadow 0.2s;
     text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
-  .source-url:hover { color: var(--accent2); }
+  .source:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 14px rgba(0,212,240,0.15);
+  }
 
-  .source-body { font-size: 13px; color: var(--text-dim); line-height: 1.7; font-weight: 300; }
+  .source h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .source .src-url {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+    word-break: break-all;
+  }
+
+  .source p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 300;
+  }
 
   /* ── CONCLUSION ── */
   .conclusion {
@@ -889,7 +1023,8 @@
   .conclusion::before {
     content: '"';
     position: absolute;
-    top: -10px; left: 28px;
+    top: -10px;
+    left: 28px;
     font-size: 180px;
     color: rgba(0,245,160,0.04);
     font-family: Georgia, serif;
@@ -933,7 +1068,11 @@
     text-transform: uppercase;
   }
 
-  .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
 
   /* ── FOOTER ── */
   .footer {
@@ -945,15 +1084,30 @@
     align-items: center;
   }
 
-  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 21px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .footer-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
   .footer-logo span { color: var(--accent); }
 
-  .footer-meta { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+  .footer-meta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
 
   /* ── SCAN LINE ── */
   .scan-line {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: 0.25;
@@ -969,19 +1123,54 @@
     100% { top: 100vh; opacity: 0; }
   }
 
+  @media (max-width: 820px) {
+    .twocol, .audience-grid, .hw-grid, .hw-aux-grid,
+    .moscow-grid, .tools-grid, .sources-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 620px) {
-    .hero           { grid-template-columns: 1fr; }
-    .hero-badge     { display: none; }
-    .stat-bar       { grid-template-columns: repeat(2, 1fr); }
-    .features-grid  { grid-template-columns: 1fr; }
-    .why-points     { grid-template-columns: 1fr; }
-    .target-grid    { grid-template-columns: 1fr; }
-    .hardware-grid  { grid-template-columns: 1fr; }
-    .addon-row      { grid-template-columns: 1fr; }
-    .moscow-grid    { grid-template-columns: 1fr; }
-    .tools-grid     { grid-template-columns: 1fr; }
-    .sources-grid   { grid-template-columns: 1fr; }
-    .page           { padding: 0 20px 80px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-badge { display: none; }
+    .stat-bar { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: 1fr; }
+    .why-points { grid-template-columns: 1fr; }
+    .page { padding: 0 20px 80px; }
+  }
+
+  .hero-logo {
+    width: 280px;
+    max-width: 100%;
+    margin: 80px;
+    border-radius: 18px;
+    overflow: hidden;
+    filter: drop-shadow(0 0 18px rgba(0,212,240,0.28));
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .hero-logo:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 28px rgba(0,212,240,0.45));
+  }
+
+  .cta {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 50px;
+    padding: 12px 22px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #000;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,212,240,0.45);
   }
 </style>
 </head>
@@ -991,7 +1180,6 @@
 
 <div class="page">
 
-  <!-- HERO -->
   <header class="hero">
     <div class="hero-bg-circle"></div>
 
@@ -1017,7 +1205,6 @@
 
   <a href="simulator.php" class="cta">Spustiť simulátor →</a>
 
-  <!-- STAT BAR -->
   <div class="stat-bar">
     <div class="stat-item">
       <div class="stat-num">5+</div>
@@ -1033,7 +1220,7 @@
     </div>
   </div>
 
-  <!-- 01 PREČO XR -->
+  <!-- 01. PREČO XR -->
   <section class="section">
     <div class="section-label">
       <span class="num">01</span>
@@ -1043,102 +1230,93 @@
     <div class="why-card">
       <p>
         Existujúce platformy ako <strong>TryHackMe</strong> alebo <strong>HackTheBox</strong> sú výborne navrhnuté, ale sú to 2D terminály.
-        XR pridáva priestorovú orientáciu, rôzne monitory, servery a logy existujú vo fyzickom priestore,
+        XR pridáva priestorovú orientáciu, kde rôzne monitory, servery a logy existujú vo fyzickom priestore,
         čo trénuje aj <strong>situational awareness</strong>, nielen technické znalosti.
         Vizualizácia útoku ako 3D grafu siete je intuitívnejšia ako tabuľka IP adries.
-        Mozog navyše využíva priestorovú navigáciu na organizáciu informácií, čo je základ Loci metódy (pamäťový palác).
       </p>
       <div class="why-points">
         <div class="why-point">
           <div class="wp-title">🧠 Spatial Awareness</div>
-          <p>Fyzický pocit z práce v SOC buduje reflexy a stresovú odolnosť, ktoré 2D terminál nedokáže nasimulovať.</p>
+          <p>Fyzický pocit z práce v SOC buduje reflexy, ktoré 2D terminál nedokáže nasimulovať.</p>
         </div>
         <div class="why-point">
           <div class="wp-title">🔭 3D Vizualizácia</div>
-          <p>Sieťový útok ako interaktívny 3D graf, nie tabuľka IP adries v spreadshete. Tímová VR session simuluje fyzickú koordináciu.</p>
+          <p>Sieťový útok ako interaktívny 3D graf, nie tabuľka IP adries v tabuľke.</p>
         </div>
         <div class="why-point">
           <div class="wp-title">🎓 Prístupnosť</div>
-          <p>Navrhnuté pre školy, dostupné licencie, slovenský a český jazyk, žiadna zbytočná hardvérová bariéra.</p>
+          <p>Navrhnuté pre školy, dostupné licencie, slovenský a český jazyk, žiadna špeciálna hardvérová bariéra.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 CIELE A ZDÔVODNENIE -->
+  <!-- 02. CIELE A ZDÔVODNENIE -->
   <section class="section">
     <div class="section-label">
       <span class="num">02</span>
       <h2>Ciele a výber témy</h2>
       <div class="line"></div>
     </div>
-    <div class="features-grid">
-      <div class="feat-card">
-        <div class="feat-num">// Ciele projektu</div>
-        <div class="feat-title">🎯 Čo chceme dosiahnuť</div>
-        <p class="feat-body">
-          <strong>Navrhnúť architektúru</strong> XR simulátora bezpečnostných incidentov a definovať VR/XR subsystémy.
-          Špecifikovať 5 scenárov s workflowom pre každú rolu.
-          Prístupné riešenie bez vysokej hardvérovej bariéry so <strong>MoSCoW prioritizáciou</strong> a realistickým roadmapom.
-        </p>
-        <div class="feat-tags">
-          <span class="feat-tag">Architektúra</span>
-          <span class="feat-tag">Scenáre</span>
-          <span class="feat-tag">Roadmap</span>
-        </div>
+    <div class="twocol">
+      <div class="pane">
+        <div class="pane-title">🎯 Ciele projektu</div>
+        <ul>
+          <li>Navrhnúť architektúru XR simulátora bezpečnostných incidentov.</li>
+          <li>Definovať VR/XR subsystémy potrebné pre prostredie SOC.</li>
+          <li>Špecifikovať 5 scenárov s workflowom pre každú rolu.</li>
+          <li>Vytvoriť popis prototypu a projektovú dokumentáciu.</li>
+          <li>Prístupné riešenie bez vysokej hardvérovej bariéry.</li>
+          <li>MoSCoW prioritizácia a realistický roadmap vývoja.</li>
+        </ul>
       </div>
-      <div class="feat-card">
-        <div class="feat-num">// Zdôvodnenie výberu témy</div>
-        <div class="feat-title">💡 Prečo práve táto téma</div>
-        <p class="feat-body">
-          Priesečník troch oblastí, ktoré nás spájajú: kyberbezpečnosť, vzdelávanie a imerzívne technológie.
-          Téma priamo zapadá do sylabu predmetu, využíva vizualizačný, kinematický, akustický aj interakčný podsystém.
-          Podľa <strong>ENISA</strong> chýba v Európe stovky tisíc špecialistov na kyberbezpečnosť.
-        </p>
-        <div class="feat-tags">
-          <span class="feat-tag">ENISA</span>
-          <span class="feat-tag">VR/XR Systémy</span>
-          <span class="feat-tag">Sylaba</span>
-        </div>
+      <div class="pane alt">
+        <div class="pane-title">💡 Zdôvodnenie výberu témy</div>
+        <ul>
+          <li><span class="lbl">Priesečník troch oblastí:</span> kyberbezpečnosť, vzdelávanie, imerzívne technológie.</li>
+          <li><span class="lbl">Medzera na trhu:</span> existujúce platformy sú 2D, reálny SOC je priestorový.</li>
+          <li><span class="lbl">Zapadá do sylabu:</span> využíva vizualizačný, kinematický, akustický a interakčný podsystém.</li>
+          <li><span class="lbl">Aktuálny problém:</span> podľa ENISA chýbajú v Európe stovky tisíc špecialistov na kyberbezpečnosť.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 03 CIEĽOVÁ SKUPINA -->
+  <!-- 03. CIEĽOVÁ SKUPINA -->
   <section class="section">
     <div class="section-label">
       <span class="num">03</span>
       <h2>Cieľová skupina</h2>
       <div class="line"></div>
     </div>
-    <div class="target-grid">
-      <div class="target-card">
-        <span class="target-icon">🎓</span>
-        <div class="target-title">Vysoké školy a univerzity</div>
-        <p class="target-body">Bc. a Mgr. študenti informatiky, aplikovanej informatiky a kybernetickej bezpečnosti. Vyučujúci predmetov zameraných na sieťovú a informačnú bezpečnosť.</p>
+    <div class="audience-grid">
+      <div class="aud-card">
+        <div class="aud-icon">🎓</div>
+        <div class="aud-title">Vysoké školy</div>
+        <p>Bc. a Mgr. študenti informatiky, aplikovanej informatiky a kybernetickej bezpečnosti. Vyučujúci predmetov bezpečnosti.</p>
       </div>
-      <div class="target-card">
-        <span class="target-icon">&lt;/&gt;</span>
-        <div class="target-title">Stredné odborné školy</div>
-        <p class="target-body">Študenti IT odborov na SPŠ a odborných školách. Učitelia informatiky hľadajúci interaktívny spôsob výuky kyberbezpečnosti.</p>
+      <div class="aud-card">
+        <div class="aud-icon">💻</div>
+        <div class="aud-title">Stredné odborné školy</div>
+        <p>Študenti IT odborov na SPŠ, učitelia informatiky hľadajúci interaktívny spôsob výuky kyberbezpečnosti.</p>
       </div>
-      <div class="target-card">
-        <span class="target-icon">🚩</span>
-        <div class="target-title">CTF tímy a záujmové krúžky</div>
-        <p class="target-body">Členovia Capture the Flag tímov, kyberbezpečnostné krúžky, účastníci hackathonov hľadajúci realistickejšie tréningové prostredie než klasické CTF platformy.</p>
+      <div class="aud-card">
+        <div class="aud-icon">🚩</div>
+        <div class="aud-title">CTF tímy a krúžky</div>
+        <p>Členovia Capture the Flag tímov, účastníci hackathonov, ktorí hľadajú realistickejšie tréningové prostredie.</p>
       </div>
-      <div class="target-card">
-        <span class="target-icon">🛡️</span>
-        <div class="target-title">Firemné SOC tímy</div>
-        <p class="target-body">Sekundárna skupina: spoločnosti prevádzkujúce vlastný alebo outsourcovaný SOC. Onboarding juniorných analytikov bez rizika na produkcii.</p>
+      <div class="aud-card">
+        <div class="aud-icon">🏢</div>
+        <div class="aud-title">Firemné SOC tímy</div>
+        <p>Sekundárna skupina: spoločnosti s vlastným alebo outsourcovaným SOC, onboarding juniorných analytikov.</p>
       </div>
     </div>
-    <div class="personas-note">
-      <strong>Tri persony:</strong>&nbsp; Študent začiatočník (navádzaný tutoriál) &nbsp;|&nbsp; Pokročilý študent (tímový mód, výzvy) &nbsp;|&nbsp; Vyučujúci (sledovanie pokroku, export reportov, úprava obtiažnosti)
+    <div class="personas">
+      Tri persony: <strong>Študent začiatočník</strong> (tutoriál), <strong>Pokročilý študent</strong> (tímový mód), <strong>Vyučujúci</strong> (sledovanie pokroku, export reportov).
     </div>
   </section>
 
-  <!-- 04 POROVNANIE PLATFORIEM -->
+  <!-- 04. POROVNANIE -->
   <section class="section">
     <div class="section-label">
       <span class="num">04</span>
@@ -1234,12 +1412,11 @@
       </table>
     </div>
     <div class="table-note">
-      <strong>Prečo tieto platformy?</strong> Reprezentujú rôzne kategórie: web laby (TryHackMe, HackTheBox), enterprise simulátory (Cyberbit), reálny SIEM nástroj (IBM QRadar), VR hra (CyberStrike) a profesionálne školenia (SANS).
-      Immersive Labs a RangeForce sme zámerne vynechali, sú príliš podobné TryHackMe a nepriniesli by do porovnania novú informáciu.
+      <strong>Prečo tieto platformy?</strong> Reprezentujú rôzne kategórie: web laby (TryHackMe, HackTheBox), enterprise simulátory (Cyberbit), profesionálne SIEM nástroje (QRadar), VR hry (CyberStrike) a formálne školenia (SANS). Immersive Labs a RangeForce sme vynechali zámerne, svojím dizajnom sú príliš podobné TryHackMe.
     </div>
   </section>
 
-  <!-- 05 TYPY INCIDENTOV -->
+  <!-- 05. INCIDENTY -->
   <section class="section">
     <div class="section-label">
       <span class="num">05</span>
@@ -1255,13 +1432,11 @@
     </div>
     <p class="incidents-desc">
       Každý typ incidentu má <strong>odlišný postup riešenia</strong>, vlastné logy a stopu,
-      iný časový tlak a rôznu závažnosť alertov (Medium, High, Critical).
-      Systém hodnotí rýchlosť reakcie, správnosť rozhodnutí a minimalizáciu škôd na simulovanej sieti.
-      Role v každom scenári: <strong>Analyst, Forensics Specialist, Incident Handler, Admin</strong>.
+      iný časový tlak. Systém hodnotí rýchlosť reakcie, správnosť rozhodnutí a minimalizáciu škôd na simulovanej sieti.
     </p>
   </section>
 
-  <!-- 06 KĽÚČOVÉ FUNKCIE -->
+  <!-- 06. KĽÚČOVÉ FUNKCIE -->
   <section class="section">
     <div class="section-label">
       <span class="num">06</span>
@@ -1272,7 +1447,7 @@
       <div class="feat-card">
         <div class="feat-num">// 01</div>
         <div class="feat-title">🖥️ Virtuálny SOC</div>
-        <p class="feat-body">Priestorovo rozmiestnené <strong>monitory, servery a dashboardy</strong>. Každá obrazovka zobrazuje iný nástroj: SIEM panel, 3D Network Map, Log Viewer, Ticket System, Team Status. Presne ako v reálnom Security Operations Centre.</p>
+        <p class="feat-body">Priestorovo rozmiestnené <strong>monitory, servery a dashboardy</strong>. Každá obrazovka zobrazuje iný nástroj, logy, sieťový traffic, SIEM panel. Presne ako v reálnom Security Operations Centre.</p>
         <div class="feat-tags">
           <span class="feat-tag">Quest 3</span>
           <span class="feat-tag">PC VR</span>
@@ -1282,37 +1457,35 @@
       <div class="feat-card">
         <div class="feat-num">// 02</div>
         <div class="feat-title">⏱️ Časový tlak a Scoring</div>
-        <p class="feat-body">Každý incident má <strong>časomíeru</strong>. Skóre závisí od rýchlosti reakcie (MTTD 30 %), správnych rozhodnutí (40 %) a minimalizácie škody na simulovanej infraštruktúre (30 %).</p>
+        <p class="feat-body">Každý incident má <strong>časomieru</strong>. Skóre závisí od rýchlosti reakcie, správnych rozhodnutí a minimalizácie škody na simulovanej infraštruktúre.</p>
         <div class="feat-tags">
           <span class="feat-tag">Leaderboard</span>
           <span class="feat-tag">Real-time</span>
-          <span class="feat-tag">MTTD</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-num">// 03</div>
         <div class="feat-title">👥 Tímový mód</div>
-        <p class="feat-body"><strong>2 až 4 študenti</strong> v jednom virtuálnom SOC, každý s inou rolou. Reálna tímová koordinácia pod tlakom, priestorový hlasový chat a shared state: ak Analyst označí alert, Incident Handler to okamžite vidí.</p>
+        <p class="feat-body"><strong>2 až 4 študenti</strong> v jednom virtuálnom SOC, každý s inou rolou, ako analyst, incident handler alebo forensics specialist. Reálna tímová koordinácia pod tlakom.</p>
         <div class="feat-tags">
           <span class="feat-tag">Multiplayer</span>
           <span class="feat-tag">Roly</span>
-          <span class="feat-tag">Voice chat</span>
+          <span class="feat-tag">Komunikácia</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-num">// 04</div>
         <div class="feat-title">🔁 Debriefing mód</div>
-        <p class="feat-body">Po skončení simulácie aplikácia <strong>prehráva útok krok za krokom</strong> v 3D priestore, vizualizuje kde nastali chyby pomocou zelených a červených značiek na časovej osi. Export reportu ako PDF pre hodnotenie učiteľom.</p>
+        <p class="feat-body">Po skončení simulácie aplikácia <strong>prehráva útok krok za krokom</strong> a vizualizuje, kde nastali chyby. Ideálne pre spätnú väzbu a hlbšie učenie.</p>
         <div class="feat-tags">
           <span class="feat-tag">Replay</span>
           <span class="feat-tag">Analýza</span>
-          <span class="feat-tag">PDF export</span>
         </div>
       </div>
       <div class="feat-card">
         <div class="feat-num">// 05</div>
         <div class="feat-title">🔧 Reálne nástroje</div>
-        <p class="feat-body">Vizualizácia výstupov z <strong>Wireshark, nmap, Splunk</strong> v 3D priestore namiesto 2D terminálu. SIEM simulátor generuje realistické logy vo formáte Splunk alebo QRadar. Priamy prenos zručností do praxe.</p>
+        <p class="feat-body">Vizualizácia výstupov z <strong>Wireshark, nmap, Splunk</strong>. Študent vidí výsledky v 3D priestore namiesto 2D terminálu. Priamy prenos zručností do praxe.</p>
         <div class="feat-tags">
           <span class="feat-tag">Wireshark</span>
           <span class="feat-tag">nmap</span>
@@ -1322,7 +1495,7 @@
       <div class="feat-card">
         <div class="feat-num">// 06</div>
         <div class="feat-title">🌐 SK a CZ Lokalizácia</div>
-        <p class="feat-body">Plná podpora <strong>slovenčiny a češtiny</strong> vrátane odbornej terminológie, nápovedy a debriefingových správ. Možnosť prepnutia do angličtiny pre prípravu na medzinárodné certifikácie.</p>
+        <p class="feat-body">Plná podpora <strong>slovenčiny a češtiny</strong> vrátane terminológie, nápovedy a debriefingových správ. Školské licencie bez vstupnej bariéry.</p>
         <div class="feat-tags">
           <span class="feat-tag">Slovenčina</span>
           <span class="feat-tag">Čeština</span>
@@ -1332,31 +1505,30 @@
     </div>
   </section>
 
-  <!-- 07 HARDVÉR A XR TECHNOLÓGIE -->
+  <!-- 07. XR HARDWARE -->
   <section class="section">
     <div class="section-label">
       <span class="num">07</span>
-      <h2>Hardvér a XR technológie</h2>
+      <h2>XR Technológie a hardvér</h2>
       <div class="line"></div>
     </div>
-    <div class="hardware-grid">
-      <div class="hw-card">
-        <span class="hw-icon">🥽</span>
-        <div class="hw-title">Meta Quest 3</div>
-        <div class="hw-sub">Primárna platforma</div>
-        <ul class="hw-list">
+    <div class="hw-grid">
+      <div class="hw-card primary">
+        <div class="hw-icon">🥽</div>
+        <h4>Meta Quest 3</h4>
+        <span class="hw-role">Primárna platforma</span>
+        <ul>
           <li>Standalone, bez PC</li>
-          <li>2064 x 2208 px/oko, 90 Hz</li>
+          <li>2064 × 2208 px na oko, 90 Hz</li>
           <li>6DoF + hand tracking</li>
           <li>Snapdragon XR2 Gen 2</li>
-          <li>Approx. 2,2 hod. aktívneho VR</li>
         </ul>
       </div>
       <div class="hw-card">
-        <span class="hw-icon">🥽</span>
-        <div class="hw-title">Meta Quest 2</div>
-        <div class="hw-sub">Kompatibilný</div>
-        <ul class="hw-list">
+        <div class="hw-icon">🥽</div>
+        <h4>Meta Quest 2</h4>
+        <span class="hw-role">Kompatibilný</span>
+        <ul>
           <li>Plná kompatibilita</li>
           <li>Nižšia grafická kvalita</li>
           <li>Dostupnejšia cena</li>
@@ -1364,36 +1536,36 @@
         </ul>
       </div>
       <div class="hw-card">
-        <span class="hw-icon">💻</span>
-        <div class="hw-title">PC VR (SteamVR)</div>
-        <div class="hw-sub">Pokročilý mód</div>
-        <ul class="hw-list">
+        <div class="hw-icon">💻</div>
+        <h4>PC VR (SteamVR)</h4>
+        <span class="hw-role">Pokročilý mód</span>
+        <ul>
           <li>RTX 2070+, 16 GB RAM</li>
           <li>HTC Vive, Valve Index</li>
-          <li>Pico 4 (OpenXR)</li>
           <li>Vyššia grafická kvalita</li>
+          <li>Pre náročnejší rendering</li>
         </ul>
       </div>
     </div>
-    <div class="addon-row">
-      <div class="addon-card">
-        <div class="addon-icon">📱</div>
+    <div class="hw-aux-grid">
+      <div class="hw-aux">
+        <div class="hw-aux-icon">📱</div>
         <div>
-          <div class="addon-title">Tablety</div>
-          <p class="addon-body">Instruktorský dashboard pre učiteľa v reálnom čase, companion režim pre študentov (cheat-sheet, materiály) a observer mód pre spolužiakov bez headsetu.</p>
+          <h5>Tablety</h5>
+          <p>Instruktorský dashboard, companion režim pre študenta, observer mód pre spolužiakov bez headsetu.</p>
         </div>
       </div>
-      <div class="addon-card">
-        <div class="addon-icon">👁️</div>
+      <div class="hw-aux">
+        <div class="hw-aux-icon">👁️</div>
         <div>
-          <div class="addon-title">Eye tracking</div>
-          <p class="addon-body">Foveated rendering pre vyšší výkon a analýza pohľadu v debriefingu, ktoré monitory študent kontroloval ako prvé. Dostupné na Meta Quest Pro a PSVR2.</p>
+          <h5>Eye tracking</h5>
+          <p>Foveated rendering pre vyšší výkon a analýza pohľadu v debriefingu. Meta Quest Pro, PSVR2.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 08 MoSCoW -->
+  <!-- 08. MOSCOW -->
   <section class="section">
     <div class="section-label">
       <span class="num">08</span>
@@ -1401,52 +1573,52 @@
       <div class="line"></div>
     </div>
     <div class="moscow-grid">
-      <div class="moscow-card moscow-must">
-        <div class="moscow-header">Must Have</div>
-        <div class="moscow-body">
-          <div class="moscow-item">3D virtuálne SOC prostredie (Meta Quest 3 + OpenXR)</div>
-          <div class="moscow-item">Aspoň jeden hrateľný scenár (Ransomware)</div>
-          <div class="moscow-item">SIEM panel simulátor s alertmi v reálnom čase</div>
-          <div class="moscow-item">6DoF tracking a raycast interakcie</div>
-          <div class="moscow-item">Scoring systém (MTTD, správnosť, škody)</div>
-          <div class="moscow-item">Debriefing mód s prehrávaním incidentu</div>
-        </div>
+      <div class="moscow must">
+        <div class="moscow-head">Must have</div>
+        <ul>
+          <li>3D virtuálne SOC prostredie</li>
+          <li>Meta Quest 3 cez Unity + OpenXR</li>
+          <li>Jeden hrateľný scenár (Ransomware)</li>
+          <li>SIEM panel simulátor</li>
+          <li>6DoF tracking, raycast interakcie</li>
+          <li>Scoring a debriefing mód</li>
+        </ul>
       </div>
-      <div class="moscow-card moscow-should">
-        <div class="moscow-header">Should Have</div>
-        <div class="moscow-body">
-          <div class="moscow-item">Všetkých 5 scenárov incidentov</div>
-          <div class="moscow-item">Tímový mód pre 2 až 4 hráčov</div>
-          <div class="moscow-item">Role systém (Analyst, Forensics, Handler, Admin)</div>
-          <div class="moscow-item">3D spatial audio a priestorový voice chat</div>
-          <div class="moscow-item">SK/CZ lokalizácia UI a terminológie</div>
-          <div class="moscow-item">Companion režim pre tablety</div>
-        </div>
+      <div class="moscow should">
+        <div class="moscow-head">Should have</div>
+        <ul>
+          <li>Všetkých 5 scenárov</li>
+          <li>Tímový mód 2 až 4 hráči</li>
+          <li>Role systém (Analyst, Forensics, Handler, Admin)</li>
+          <li>3D spatial audio</li>
+          <li>SK a CZ lokalizácia</li>
+          <li>Companion režim pre tablety</li>
+        </ul>
       </div>
-      <div class="moscow-card moscow-could">
-        <div class="moscow-header">Could Have</div>
-        <div class="moscow-body">
-          <div class="moscow-item">AR mód (HoloLens 2, Apple Vision Pro)</div>
-          <div class="moscow-item">Eye tracking a foveated rendering</div>
-          <div class="moscow-item">Editor vlastných scenárov pre vyučujúcich</div>
-          <div class="moscow-item">LMS integrácia (Moodle, Canvas, LTI 1.3)</div>
-          <div class="moscow-item">Leaderboard medzi školami</div>
-        </div>
+      <div class="moscow could">
+        <div class="moscow-head">Could have</div>
+        <ul>
+          <li>AR mód (HoloLens, Vision Pro)</li>
+          <li>Eye tracking a foveated rendering</li>
+          <li>Editor vlastných scenárov</li>
+          <li>LMS integrácia (Moodle, Canvas)</li>
+          <li>Leaderboard medzi školami</li>
+        </ul>
       </div>
-      <div class="moscow-card moscow-wont">
-        <div class="moscow-header">Won't Have (táto fáza)</div>
-        <div class="moscow-body">
-          <div class="moscow-item">Autonómni AI protivníci v reálnom čase</div>
-          <div class="moscow-item">Integrácia s produkčnými SIEM (Splunk API)</div>
-          <div class="moscow-item">Mobilná 2D verzia bez VR headsetu</div>
-          <div class="moscow-item">Cloudový globálny multiplayer</div>
-          <div class="moscow-item">Certifikačné testy (Security+, CEH)</div>
-        </div>
+      <div class="moscow wont">
+        <div class="moscow-head">Won't have (táto fáza)</div>
+        <ul>
+          <li>Autonómni AI protivníci</li>
+          <li>Integrácia s produkčnými SIEM (API)</li>
+          <li>Mobilná 2D verzia bez VR</li>
+          <li>Cloudový globálny multiplayer</li>
+          <li>Certifikačné testy (Security+, CEH)</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 09 POUŽITÉ NÁSTROJE -->
+  <!-- 09. POUŽITÉ NÁSTROJE -->
   <section class="section">
     <div class="section-label">
       <span class="num">09</span>
@@ -1454,76 +1626,76 @@
       <div class="line"></div>
     </div>
     <div class="tools-grid">
-      <div class="tool-card">
+      <div class="tool">
         <div class="tool-icon">🤖</div>
-        <div class="tool-meta">
-          <div class="tool-title">Claude (Anthropic)</div>
-          <span class="tool-type">AI, obrazový generátor</span>
-          <p class="tool-body">Vygenerovanie favicony a loga projektu CyberLab XR. Asistencia pri revízii, štrukturovaní a formálnej kontrole dokumentácie.</p>
+        <div>
+          <h4>Claude (Anthropic)</h4>
+          <span class="tool-kind">AI, obrazový generátor</span>
+          <p>Vygenerovanie favicony a loga CyberLab XR. Asistencia pri revízii a štrukturovaní dokumentácie.</p>
         </div>
       </div>
-      <div class="tool-card">
+      <div class="tool">
         <div class="tool-icon">🐙</div>
-        <div class="tool-meta">
-          <div class="tool-title">Git a GitHub</div>
-          <span class="tool-type">Verziovanie</span>
-          <p class="tool-body">Správa zdrojového kódu a dokumentácie. Publikovanie projektovej stránky cez GitHub Pages.</p>
+        <div>
+          <h4>Git a GitHub</h4>
+          <span class="tool-kind">Verziovanie</span>
+          <p>Správa zdrojového kódu a dokumentácie, publikovanie cez GitHub Pages.</p>
         </div>
       </div>
-      <div class="tool-card">
+      <div class="tool">
         <div class="tool-icon">🎮</div>
-        <div class="tool-meta">
-          <div class="tool-title">Unity 3D (2022 LTS)</div>
-          <span class="tool-type">Vývojové prostredie</span>
-          <p class="tool-body">Plánovaná platforma pre implementáciu VR prototypu (od verzie v2.0). Využíva OpenXR pre multiplatformovú kompatibilitu.</p>
+        <div>
+          <h4>Unity 3D (2022 LTS)</h4>
+          <span class="tool-kind">Vývojové prostredie</span>
+          <p>Plánovaná platforma pre implementáciu VR prototypu od verzie v2.0.</p>
         </div>
       </div>
-      <div class="tool-card">
-        <div class="tool-icon">✏️</div>
-        <div class="tool-meta">
-          <div class="tool-title">Figma</div>
-          <span class="tool-type">UI/UX nástroj</span>
-          <p class="tool-body">Skice rozloženia SOC monitorov a dashboardov, pracovné wireframe návrhy pre VR rozhranie.</p>
+      <div class="tool">
+        <div class="tool-icon">🎨</div>
+        <div>
+          <h4>Figma</h4>
+          <span class="tool-kind">UI/UX nástroj</span>
+          <p>Skice rozloženia SOC monitorov a dashboardov, pracovné wireframe.</p>
         </div>
       </div>
     </div>
-    <div class="tool-note">
-      <strong>Poznámka:</strong> Textová časť dokumentácie je v prevažnej miere dielom autorov. AI nástroj bol použitý iba pri revízii, formálnej kontrole a generovaní grafiky. Všetky odborné a technické rozhodnutia sú výsledkom vlastnej analýzy tímu.
+    <div class="tools-note">
+      <strong>Poznámka:</strong> Textová časť dokumentácie je v prevažnej miere dielom autorov. AI nástroj Claude bol použitý najmä pri revízii, formálnej kontrole a pri generovaní grafického loga a favicony.
     </div>
   </section>
 
-  <!-- 10 WEBOVÉ ZDROJE -->
+  <!-- 10. WEBOVÉ ZDROJE -->
   <section class="section">
     <div class="section-label">
       <span class="num">10</span>
-      <h2>Použité webové zdroje</h2>
+      <h2>Webové zdroje</h2>
       <div class="line"></div>
     </div>
     <div class="sources-grid">
-      <div class="source-card">
-        <div class="source-title">MITRE ATT&amp;CK Framework</div>
-        <a href="https://attack.mitre.org/" class="source-url" target="_blank" rel="noopener">attack.mitre.org</a>
-        <p class="source-body">Klasifikácia útokových techník. Inšpirácia pre priebeh scenárov, časové osi útokov a kategorizáciu alertov v SIEM simulátore.</p>
-      </div>
-      <div class="source-card">
-        <div class="source-title">NIST SP 800-61 Incident Handling Guide</div>
-        <a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final" class="source-url" target="_blank" rel="noopener">csrc.nist.gov/pubs/sp/800/61</a>
-        <p class="source-body">Metodika fáz incident response. Základ pre roly, workflow a hodnotenie správnosti rozhodnutí v simulátore.</p>
-      </div>
-      <div class="source-card">
-        <div class="source-title">OpenXR Specification (Khronos Group)</div>
-        <a href="https://www.khronos.org/openxr/" class="source-url" target="_blank" rel="noopener">khronos.org/openxr</a>
-        <p class="source-body">Technický štandard pre multiplatformovú podporu VR/XR zariadení v Unity. Umožňuje súčasné nasadenie na Meta Quest, PC VR a AR zariadeniach.</p>
-      </div>
-      <div class="source-card">
-        <div class="source-title">Meta Quest Developer Documentation</div>
-        <a href="https://developers.meta.com/horizon/" class="source-url" target="_blank" rel="noopener">developers.meta.com/horizon</a>
-        <p class="source-body">Referenčná dokumentácia pre parametre Meta Quest 3, hand tracking, foveated rendering a výkonnostné odporúčania pre VR aplikácie.</p>
-      </div>
+      <a href="https://attack.mitre.org/" target="_blank" rel="noopener" class="source">
+        <h4>🛡️ MITRE ATT&amp;CK Framework</h4>
+        <span class="src-url">attack.mitre.org</span>
+        <p>Klasifikácia útokových techník. Inšpirácia pre priebeh scenárov a časové osi útokov.</p>
+      </a>
+      <a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final" target="_blank" rel="noopener" class="source">
+        <h4>📘 NIST SP 800-61 Incident Handling</h4>
+        <span class="src-url">csrc.nist.gov/pubs/sp/800/61</span>
+        <p>Metodika fáz incident response. Základ pre role a workflow v našom simulátore.</p>
+      </a>
+      <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener" class="source">
+        <h4>🌐 OpenXR Specification (Khronos)</h4>
+        <span class="src-url">khronos.org/openxr</span>
+        <p>Technický štandard pre multiplatformovú podporu VR/XR zariadení v Unity.</p>
+      </a>
+      <a href="https://developers.meta.com/horizon/" target="_blank" rel="noopener" class="source">
+        <h4>🥽 Meta Quest Developer Documentation</h4>
+        <span class="src-url">developers.meta.com/horizon</span>
+        <p>Referenčná dokumentácia pre Meta Quest 3, hand tracking a výkonnostné odporúčania.</p>
+      </a>
     </div>
   </section>
 
-  <!-- 11 ZÁVER -->
+  <!-- 11. ZÁVER -->
   <section class="section">
     <div class="section-label">
       <span class="num">11</span>
@@ -1534,7 +1706,7 @@
       <p class="conclusion-text">
         Žiadna existujúca platforma nespája <span>VR prostredie</span> s realistickou simuláciou incidentov
         a zároveň prístupnosťou pre školy. CyberLab XR je jediná, kde študent
-        <span>fyzicky sedí v SOC</span> a v reálnom čase rieši útok
+        <span>„fyzicky sedí" v SOC</span> a v reálnom čase rieši útok
         s tímom, pod tlakom, s nástrojmi z praxe.
       </p>
       <div class="conclusion-footer">
@@ -1547,7 +1719,7 @@
 
   <footer class="footer">
     <div class="footer-logo">Cyber<span>Lab</span> XR</div>
-    <div class="footer-meta">Incident Response Simulator · v1.4 · 2026</div>
+    <div class="footer-meta">Incident Response Simulator · Concept Document · 2026</div>
   </footer>
 
 </div>
