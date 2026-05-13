@@ -493,19 +493,90 @@
   .aud-card:nth-child(3) { border-top: 2px solid var(--accent4); }
   .aud-card:nth-child(4) { border-top: 2px solid var(--accent5); }
 
-  .personas {
+  /* ── MODES GRID ── */
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
     margin-top: 18px;
-    padding: 14px 22px;
-    background: rgba(0,212,240,0.04);
-    border: 1px dashed var(--border-strong);
+  }
+
+  .mode-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .mode-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: var(--glow);
+  }
+
+  .mode-card:nth-child(1) { border-top: 3px solid var(--accent2); }
+  .mode-card:nth-child(2) { border-top: 3px solid var(--accent); }
+  .mode-card:nth-child(3) { border-top: 3px solid var(--accent3); }
+
+  .mode-badge {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .mode-card:nth-child(1) .mode-badge { background: rgba(0,245,160,0.12); color: var(--accent2); border: 1px solid rgba(0,245,160,0.25); }
+  .mode-card:nth-child(2) .mode-badge { background: rgba(0,212,240,0.12); color: var(--accent);  border: 1px solid rgba(0,212,240,0.25); }
+  .mode-card:nth-child(3) .mode-badge { background: rgba(255,75,110,0.12); color: var(--accent3); border: 1px solid rgba(255,75,110,0.25); }
+
+  .mode-card h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .mode-card .mode-target {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .mode-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .cybyte-note {
+    margin-top: 16px;
+    padding: 13px 20px;
+    background: rgba(0,245,160,0.04);
+    border: 1px dashed rgba(0,245,160,0.28);
     border-radius: 10px;
     font-size: 13px;
     color: var(--text-dim);
     font-style: italic;
     text-align: center;
+    line-height: 1.7;
+    font-weight: 300;
   }
 
-  .personas strong { color: var(--accent); font-style: normal; font-weight: 600; }
+  .cybyte-note strong { color: var(--accent2); font-style: normal; font-weight: 600; }
 
   /* ── TABLE ── */
   .table-wrap {
@@ -1125,7 +1196,8 @@
 
   @media (max-width: 820px) {
     .twocol, .audience-grid, .hw-grid, .hw-aux-grid,
-    .moscow-grid, .tools-grid, .sources-grid { grid-template-columns: 1fr; }
+    .moscow-grid, .tools-grid, .sources-grid,
+    .modes-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 620px) {
@@ -1311,8 +1383,30 @@
         <p>Sekundárna skupina: spoločnosti s vlastným alebo outsourcovaným SOC, onboarding juniorných analytikov.</p>
       </div>
     </div>
-    <div class="personas">
-      Tri persony: <strong>Študent začiatočník</strong> (tutoriál), <strong>Pokročilý študent</strong> (tímový mód), <strong>Vyučujúci</strong> (sledovanie pokroku, export reportov).
+
+    <!-- Tri režimy — zo Slide 4 prezentácie -->
+    <div class="modes-grid">
+      <div class="mode-card">
+        <span class="mode-badge">Explorer Mode</span>
+        <h4>🏫 Stredné školy</h4>
+        <span class="mode-target">Základná úroveň</span>
+        <p>Zjednodušené scenáre, kroková výuka s nápoveďou, výrazný herný aspekt, gamifikácia (XP, odznaky). Cieľ: vzbudiť záujem o kyberbezpečnosť.</p>
+      </div>
+      <div class="mode-card">
+        <span class="mode-badge">Analyst Mode</span>
+        <h4>🎓 Vysoké školy</h4>
+        <span class="mode-target">Pokročilá úroveň</span>
+        <p>Detailnejšie scenáre, hlbšia analýza logov, plnohodnotný SIEM panel, tímové role. Bc./Mgr. informatika a kybernetická bezpečnosť.</p>
+      </div>
+      <div class="mode-card">
+        <span class="mode-badge">Pro Mode</span>
+        <h4>🏢 Firmy a SOC tímy</h4>
+        <span class="mode-target">Profesionálna úroveň</span>
+        <p>Simulované nástroje verné realite (Splunk, Wireshark, nmap), hodnotenie podľa NIST a MITRE ATT&amp;CK. Onboarding SOC analytikov.</p>
+      </div>
+    </div>
+    <div class="cybyte-note">
+      Maskot <strong>CyByte</strong> — priateľský robotický strážca siete — sprevádza používateľov iba v Explorer Mode. Vysvetľuje pojmy, dáva nápovedy a motivuje. Analyst a Pro Mode ho neobsahujú, zachovávajú profesionálny charakter prostredia.
     </div>
   </section>
 
@@ -1577,7 +1671,7 @@
         <div class="moscow-head">Must have</div>
         <ul>
           <li>3D virtuálne SOC prostredie</li>
-          <li>Meta Quest 3 cez Unity + OpenXR</li>
+          <li>Meta Quest 3 cez Unity 6.3 LTS + OpenXR</li>
           <li>Jeden hrateľný scenár (Ransomware)</li>
           <li>SIEM panel simulátor</li>
           <li>6DoF tracking, raycast interakcie</li>
@@ -1587,6 +1681,7 @@
       <div class="moscow should">
         <div class="moscow-head">Should have</div>
         <ul>
+          <li>Tri režimy: Explorer / Analyst / Pro</li>
           <li>Všetkých 5 scenárov</li>
           <li>Tímový mód 2 až 4 hráči</li>
           <li>Role systém (Analyst, Forensics, Handler, Admin)</li>
@@ -1645,9 +1740,9 @@
       <div class="tool">
         <div class="tool-icon">🎮</div>
         <div>
-          <h4>Unity 3D (2022 LTS)</h4>
+          <h4>Unity 6.3 LTS</h4>
           <span class="tool-kind">Vývojové prostredie</span>
-          <p>Plánovaná platforma pre implementáciu VR prototypu od verzie v2.0.</p>
+          <p>Plánovaná platforma pre implementáciu VR prototypu od verzie v2.0. Natívna podpora OpenXR, Meta XR SDK a URP pre Quest.</p>
         </div>
       </div>
       <div class="tool">
